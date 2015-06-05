@@ -3,7 +3,7 @@
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>
-            classpath:/bubugao-goods-schedule/spring/config/spring-config.xml,
+            classpath:/spring-context.xml
         </param-value>
   </context-param>
   <listener>
