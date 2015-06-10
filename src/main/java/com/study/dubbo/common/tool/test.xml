@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Apis name="店铺API" key="com.bubugao.store.storeService"
+	description="京东店铺API，包含提供商家、商家店铺基本信息及店内分类操作查询等功能。">
+
+	<definition-element id="shop"
+		class="com.bubugao.store.model.Shop">
+		<element javaName="name" apiName="name" need="true"
+			type="java.lang.String" demoValue="12" remark="卖家自定义类目名称">
+		</element>
+		<element javaName="parentId" type="java.lang.String" apiName="parent_id"
+			need="true" demoValue="12"
+			remark="父类目编号，如果类目为店铺下的一级类目：值等于0，如果类目为子类目，调用获取360buy.warecats.get父类目编号">
+		</element>
+		<element javaName="createTime" type="java.lang.String" 
+			apiName="create_time" need="true" demoValue="12" remark="添加类目时间"></element>
+	</definition-element>
+	
+	
+
+	<Api method="add" name="360buy.sellercat.add" description="添加卖家自定义店内分类"
+		level="2" auth="true" view="通用应用,自研应用">
+		<param ref="shop"></param>
+		<result name="createTime" appName="create_time" demoValue="12"
+			type="java.lang.String">
+			添加类目时间
+		</result>
+
+		<demo-description>
+			{
+			"360buy_sellercat_add_response": {
+			"sellerCatAddResponse": {
+			"create_time": "2012-01-17",
+			"code": "",
+			"cid": "3206"
+			}
+			}
+			}
+		</demo-description>
+	</Api>
+
+
+</Apis>
