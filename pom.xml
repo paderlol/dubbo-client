@@ -1,22 +1,26 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.study.dubbo.client</groupId>
-  <artifactId>dubbo-client-demo</artifactId>
-  <packaging>jar</packaging>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>dubbo-client-demo</name>
-  <url>http://maven.apache.org</url>
-  <properties>
-	<spring.version>4.1.6.RELEASE</spring.version>
-	<junit.version>4.12</junit.version>
-	<dubbo.version>2.5.3</dubbo.version>
-	<jdk.version>1.7</jdk.version>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.study.dubbo.client</groupId>
+	<artifactId>dubbo-client-demo</artifactId>
+	<packaging>jar</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>dubbo-client-demo</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<spring.version>4.1.6.RELEASE</spring.version>
+		<junit.version>4.12</junit.version>
+		<dubbo.version>2.5.3</dubbo.version>
+		<jdk.version>1.7</jdk.version>
 	</properties>
-  <dependencies>
-  
-  		
-    	<dependency>
+	<dependencies>
+
+		<dependency>
+		<groupId>com.study.dubbo</groupId>
+	<artifactId>dubbo-demo</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${junit.version}</version>
@@ -53,14 +57,14 @@
 			<artifactId>spring-context</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-  </dependencies>
-  <build>
-    <finalName>dubbo-client-demo</finalName>
-    <plugins>
+	</dependencies>
+	<build>
+		<finalName>dubbo-client-demo</finalName>
+		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.0</version>
+				<version>2.3.2</version>
 				<configuration>
 					<encoding>UTF-8</encoding>
 					<source>1.7</source>
@@ -68,6 +72,6 @@
 				</configuration>
 			</plugin>
 		</plugins>
-  </build>
+	</build>
 
 </project>

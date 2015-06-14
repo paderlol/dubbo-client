@@ -1,3 +1,4 @@
+package com.study.dubbo.sample;
 import java.io.IOException;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
