@@ -14,6 +14,8 @@ import com.alibaba.dubbo.rpc.service.GenericService;
  *
  */
 public class ApiConfigConsumerTest {
+	private static final String GROUNP = "api";
+	private static final String VERSION = "1.0.0";
 	/**
 	 * 注册中心方式
 	 */
@@ -39,8 +41,8 @@ public class ApiConfigConsumerTest {
 		reference.setApplication(application);
 		reference.setRegistry(registry); // 多个注册中心可以用setRegistries()
 		reference.setInterface(ApiConfigService.class);
-		reference.setVersion("1.0.0");
-		reference.setGroup("api");
+		reference.setVersion(VERSION);
+		reference.setGroup(GROUNP);
 		// 和本地bean一样使用apiConfigService
 //		ApiConfigService apiConfigService = reference.get(); // 注意：此代理对象内部封装了所有通讯细节，对象较重，请缓存复用
 		ReferenceConfigCache cache = ReferenceConfigCache.getCache();

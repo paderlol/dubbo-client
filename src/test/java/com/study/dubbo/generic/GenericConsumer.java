@@ -31,38 +31,47 @@ import com.alibaba.dubbo.rpc.service.GenericService;
 public class GenericConsumer {
 
     
-    public static void main(String[] args) throws IOException {
+    private static final String VERSION = "1.0.0";
+	private static final String GROUP = "generic";
+	private static final String METHOD = "doSomething";
+	private static final String INTEFACE = "com.study.dubbo.generic.GenericDemoService";
+	private static final String ZOOKEEPER = "zookeeper";
+	private static final String CONSUMER_OF_HELLOWORLD_APP = "consumer-of-helloworld-app";
+	private static final String ADDRESS = "120.25.250.61:2181";
+
+	public static void main(String[] args) throws IOException {
         
         ApplicationConfig application = new ApplicationConfig();
-        application.setName("consumer-of-helloworld-app");
+        application.setName(CONSUMER_OF_HELLOWORLD_APP);
          
         // 连接注册中心配置
         RegistryConfig registryConfig = new RegistryConfig();
-        registryConfig.setProtocol("zookeeper");
-        registryConfig.setAddress("192.168.44.155:2181");
+        registryConfig.setProtocol(ZOOKEEPER);
+        registryConfig.setAddress(ADDRESS);
+        
+        
      // 引用远程服务 
         ReferenceConfig<GenericService> reference = new ReferenceConfig<GenericService>(); // 该实例很重量，里面封装了所有与注册中心及服务提供方连接，请缓存
         reference.setApplication(application);
         reference.setRegistry(registryConfig);
-        reference.setInterface("com.study.dubbo.server.DemoService"); // 弱类型接口名 
+        reference.setInterface(INTEFACE); // 弱类型接口名 
         reference.setGeneric(true); // 声明为泛化接口 
+        reference.setGroup(GROUP);
+        reference.setVersion(VERSION);
         ReferenceConfigCache cache = ReferenceConfigCache.getCache();
         GenericService genericService = cache.get(reference);
 //        GenericService genericService = reference.get(); // 用com.alibaba.dubbo.rpc.service.GenericService可以替代所有接口引用 
+       
+        
         // 基本类型以及Date,List,Map等不需要转换，直接调用 
         Map<String, Object> person = new HashMap<String, Object>(); 
         person.put("name", "xxx"); 
         person.put("age", 111); 
-        Object result = genericService.$invoke("doSomething", new String[]{"com.study.dubbo.model.Person"}, new Object[]{person}); 
+        
+        //通过代理类执行服务方法
+        Object result = genericService.$invoke(METHOD, new String[]{"com.study.dubbo.model.Person"}, new Object[]{person}); 
         System.out.println(result);
-        Collection<Registry> registries = AbstractRegistryFactory.getRegistries();
-        for (Registry registry : registries) {
-            ZookeeperRegistry zookeeperRegistry=(ZookeeperRegistry) registry;
-            Set<URL> registered = zookeeperRegistry.getRegistered();
-            for (URL url : registered) {
-                System.out.println(url);
-            }
-        }
+        
         
          
        

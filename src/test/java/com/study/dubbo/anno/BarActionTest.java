@@ -8,8 +8,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class BarActionTest {
 	
+	private static final String CONSUMER_ANNO_XML = "/consumer-anno.xml";
+
 	public static void main(String[] args) {
-		ClassPathXmlApplicationContext applicationContext  = new ClassPathXmlApplicationContext(new String[]{"/consumer-anno.xml"});
+		ClassPathXmlApplicationContext applicationContext  = new ClassPathXmlApplicationContext(new String[]{CONSUMER_ANNO_XML});
         applicationContext.start();
         BarAction bar = (BarAction) applicationContext.getBean("barAction");
         bar.say();
